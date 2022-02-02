@@ -1,0 +1,9 @@
+# Backend framework
+fastapi == 0.73.0
+
+# Fast ASGI server
+uvicorn == 0.17.1
+
+# Non-blocking MongoDB driver for asyncio or tornado
+motor == 2.5.1
+
