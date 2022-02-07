@@ -13,7 +13,7 @@ app = FastAPI()
 
 
 # List of allowed origins
-origins = ["*"]
+origins = ["http://localhost:3000"]
 
 # Adding is as 'middleware' to fast api app. Look at fastapi documentation for CORS
 app.add_middleware(
