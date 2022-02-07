@@ -28,6 +28,7 @@ async def fetch_all_contacts():
 
 
 async def create_contact(contact):
+    contact['photo'] = contact['photo'] if contact['photo'] else "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__480.png"
     document = contact
     result = await collection.insert_one(document)
     return document

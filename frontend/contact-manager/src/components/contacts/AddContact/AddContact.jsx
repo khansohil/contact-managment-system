@@ -69,7 +69,6 @@ let AddContact = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input 
-                                        required={true}                        
                                         name="photo"
                                         value={contact.photo}
                                         onChange={updateInput}
@@ -85,7 +84,6 @@ let AddContact = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input 
-                                        required={true}                        
                                         name="email"
                                         value={contact.email}
                                         onChange={updateInput}
@@ -93,7 +91,6 @@ let AddContact = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input 
-                                        required={true}                        
                                         name="company"
                                         value={contact.company}
                                         onChange={updateInput}
@@ -101,7 +98,6 @@ let AddContact = () => {
                                 </div>
                                 <div className="mb-2">
                                     <input 
-                                        required={true}                        
                                         name="title"
                                         value={contact.title}
                                         onChange={updateInput}
