@@ -36,7 +36,7 @@ async def get_contact():
     return response
 
 
-@app.get("/api/contact{name}", response_model=Contact)
+@app.get("/api/contact/{name}", response_model=Contact)
 async def get_contact_by_id(name):
     response = await fetch_one_contact(name)
     if response:
@@ -53,16 +53,16 @@ async def post_contact(contact: Contact):
     raise HTTPException(400, "Bad request")
 
 
-@app.put("/api/contact{name}", response_model=Contact)
-async def put_contact(name: str, photo: str, mobile: str, email: str, Company: str, Title: str):
-    response = await update_contact(name, photo, mobile, email, Company, Title)
+@app.put("/api/contact/{name}", response_model=Contact)
+async def put_contact(contact: Contact, name: str):
+    response = await update_contact(name, contact.dict())
     if response:
         return response
 
     raise HTTPException(404, f"Contact with name: {name} does not exist")
 
 
-@app.delete("/api/contact{name}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/api/contact/{name}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_contact(name):
     response = await remove_contact(name)
     if response:

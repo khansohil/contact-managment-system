@@ -33,8 +33,8 @@ async def create_contact(contact):
     return document
 
 
-async def update_contact(name: str, photoUrl: str, mobile: str, email: str, Company: str, Title: str):
-    await collection.update_one({"name": name}, {"$set": {"mobile": mobile, "email": email, "photoUrl": photoUrl, "Company": Company, "Title": Title}})
+async def update_contact(name, contact):
+    await collection.update_one({"name": name}, {"$set": {"name": contact['name'], "photo": contact['photo'], "mobile": contact['mobile'], "email": contact['email'], "company": contact['company'], "title": contact['title']}})
     document = await collection.find_one({"name": name})
     return document
 
