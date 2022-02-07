@@ -12,4 +12,9 @@ export class ContactService{
         let dataURL = `${this.serverURL}/api/contact${contactId}`
         return axios.get(dataURL)
     }
+
+    static createContact(contact){
+        let dataURL = `${this.serverURL}/api/contact`
+        return axios.post(dataURL, contact)
+    }
 }
