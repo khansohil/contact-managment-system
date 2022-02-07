@@ -33,11 +33,7 @@ let EditContact = () => {
                                 <div className="mb-2">
                                     <input type="text" className="form-control" placeholder='Title' />
                                 </div>
-                                <div className="mb-2">
-                                    <select className='form-control'>
-                                        <option value="">Select a Group</option>
-                                    </select>
-                                </div>
+                                
                                 <div className="mb-2">
                                     <input type="submit" className="btn btn-primary" value='Update' />
                                     <Link to={'/contacts/list'} className='btn btn-dark ms-2'>Cancel</Link>

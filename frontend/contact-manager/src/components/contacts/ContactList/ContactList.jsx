@@ -27,7 +27,7 @@ let ContactList = () => {
         fetchData()
     }, [])
 
-    let {loading, contacts, errorMessage} = state;
+    let {contacts, errorMessage} = state;
 
     return(
         <React.Fragment>
@@ -94,7 +94,7 @@ let ContactList = () => {
                                                         </ul>
                                                     </div>
                                                     <div className="col-md-1 d-flex flex-column align-items-center">
-                                                        <Link to={`/contacts/view/:contactId`} className='btn btn-warning my-1'>
+                                                        <Link to={`/contacts/view/${contact.name}`} className='btn btn-warning my-1'>
                                                             <i className='fa fa-eye'/>
                                                         </Link>
                                                         <Link to={`/contacts/edit/:contactId`} className='btn btn-primary my-1'>
