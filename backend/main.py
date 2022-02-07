@@ -13,7 +13,7 @@ app = FastAPI()
 
 
 # List of allowed origins
-origins = ["https://localhost:3000"]
+origins = ["*"]
 
 # Adding is as 'middleware' to fast api app. Look at fastapi documentation for CORS
 app.add_middleware(
@@ -54,8 +54,8 @@ async def post_contact(contact: Contact):
 
 
 @app.put("/api/contact{name}", response_model=Contact)
-async def put_contact(name: str, contact: str):
-    response = await update_contact(name, contact)
+async def put_contact(name: str, photoUrl: str, mobile: str, email: str, Company: str, Title: str):
+    response = await update_contact(name, photoUrl, mobile, email, Company, Title)
     if response:
         return response
 
