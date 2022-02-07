@@ -27,6 +27,25 @@ let ContactList = () => {
         fetchData()
     }, [])
 
+    let clickDelete = async (contactId) => {
+        try {
+            let response = await ContactService.deleteContact(contactId)
+            if(response){
+                let response = await ContactService.getAllContacts()
+                setState({
+                    ...state,
+                    contacts:response.data
+                })
+            }
+
+        } catch (error) {
+            setState({
+                ...state,
+                errorMessage: error.message
+            })
+        }
+    }
+
     let {contacts, errorMessage} = state;
 
     return(
@@ -100,7 +119,7 @@ let ContactList = () => {
                                                         <Link to={`/contacts/edit/${contact.name}`} className='btn btn-primary my-1'>
                                                             <i className='fa fa-pen'/>
                                                         </Link> 
-                                                        <button className='btn btn-danger my-1'>
+                                                        <button className='btn btn-danger my-1' onClick={() => clickDelete(contact.name)}>
                                                             <i className='fa fa-trash'/>
                                                         </button>
                                                     </div>
