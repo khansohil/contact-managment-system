@@ -4,8 +4,13 @@ import { ContactService } from '../../../services/ContactService'
 
 let ContactList = () => {
 
+    let [query, setQuery] = React.useState({
+        text: ''
+    })
+
     let[state, setState] = React.useState({
         contacts: [],
+        filteredContacts: [],
         errorMessage: ''
     })
 
@@ -15,7 +20,8 @@ let ContactList = () => {
                 let response = await ContactService.getAllContacts()
                 setState({
                     ...state,
-                    contacts:response.data
+                    contacts:response.data,
+                    filteredContacts: response.data
                 })
             }catch(error){
                 setState({
@@ -34,7 +40,8 @@ let ContactList = () => {
                 let response = await ContactService.getAllContacts()
                 setState({
                     ...state,
-                    contacts:response.data
+                    contacts:response.data,
+                    filteredContacts: response.data
                 })
             }
 
@@ -46,7 +53,18 @@ let ContactList = () => {
         }
     }
 
-    let {contacts, errorMessage} = state;
+    let searchContacts = (event) => {
+        setQuery({...query, text: event.target.value})
+        let theContacts = state.contacts.filter(contact => {
+            return contact.name.toLowerCase().includes(event.target.value.toLowerCase())
+        })
+         setState({
+             ...state,
+             filteredContacts: theContacts
+         })
+    }
+
+    let {contacts, filteredContacts, errorMessage} = state;
 
     return(
         <React.Fragment>
@@ -70,7 +88,11 @@ let ContactList = () => {
                                 <form className='row'>
                                     <div className="col">
                                         <div className="mb-2">
-                                            <input type="text" className="form-control" placeholder='Search Names' />
+                                            <input 
+                                                name="text"
+                                                value={query.text}
+                                                onChange={searchContacts}
+                                                type="text" className="form-control" placeholder='Search Names' />
                                         </div>
                                     </div>
                                     <div className="col">
@@ -89,8 +111,8 @@ let ContactList = () => {
                 <div className="container">
                     <div className="row">
                         {
-                            contacts.length > 0 &&
-                            contacts.map(contact => {
+                            filteredContacts.length > 0 &&
+                            filteredContacts.map(contact => {
                                 return(
                                     <div className="col-md-6" key={contact.name}>
                                         <div className="card my-2">
