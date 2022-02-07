@@ -4,7 +4,7 @@ from typing import Optional
 
 class Contact(BaseModel):
     name: str
-    photoUrl: Optional[str]
+    photo: Optional[str]
     mobile: str
     email: Optional[str]
     company: Optional[str]

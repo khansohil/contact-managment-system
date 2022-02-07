@@ -5,7 +5,6 @@ import { ContactService } from '../../../services/ContactService'
 let ContactList = () => {
 
     let[state, setState] = React.useState({
-        loading: false,
         contacts: [],
         errorMessage: ''
     })
@@ -13,17 +12,14 @@ let ContactList = () => {
     React.useEffect(() => {
         async function fetchData(){
             try{
-                setState({...state,loading:true})
                 let response = await ContactService.getAllContacts()
                 setState({
                     ...state,
-                    loading: false,
                     contacts:response.data
                 })
             }catch(error){
                 setState({
                     ...state,
-                    loading: false,
                     errorMessage: error.message
                 })
             }
@@ -74,26 +70,26 @@ let ContactList = () => {
                 <div className="container">
                     <div className="row">
                         {
-                            contacts.length > 0 && 
+                            contacts.length > 0 &&
                             contacts.map(contact => {
                                 return(
-                                    <div className="col-md-6">
-                                        <div className="card">
+                                    <div className="col-md-6" key={contact.name}>
+                                        <div className="card my-2">
                                             <div className="card-body">
                                                 <div className="row align-items-center d-flex justify-content-around">
                                                     <div className="col-md-4">
-                                                        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ftoppng.com%2Ficons-logos-emojis-user-icon-png-transparent-PNG-free-PNG-Images_276583&psig=AOvVaw3RH5AN1me50CjIl0MhTlnZ&ust=1644298964244000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKCxtY_x7PUCFQAAAAAdAAAAABAD" alt="" className='contact-img'/>
+                                                        <img src={contact.photo} alt="" className='contact-img'/>
                                                     </div>
                                                     <div className="col-md-7">
                                                         <ul className="list-group">
                                                             <li className="list-group-item list-group-item-action">
-                                                                    Name : <span className='fw-bold'>Rajan</span>
+                                                                    Name : <span className='fw-bold'>{contact.name}</span>
                                                             </li>
                                                             <li className="list-group-item list-group-item-action">
-                                                                    Mobile : <span className='fw-bold'>9912812112</span>
+                                                                    Mobile : <span className='fw-bold'>{contact.mobile}</span>
                                                             </li>
                                                             <li className="list-group-item list-group-item-action">
-                                                                    Email : <span className='fw-bold'>rajan@gmail.com</span>
+                                                                    Email : <span className='fw-bold'>{contact.email}</span>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -115,7 +111,6 @@ let ContactList = () => {
                                 )
                             })
                         }
-                        
                     </div>
                 </div>
             </section>

@@ -54,8 +54,8 @@ async def post_contact(contact: Contact):
 
 
 @app.put("/api/contact{name}", response_model=Contact)
-async def put_contact(name: str, photoUrl: str, mobile: str, email: str, Company: str, Title: str):
-    response = await update_contact(name, photoUrl, mobile, email, Company, Title)
+async def put_contact(name: str, photo: str, mobile: str, email: str, Company: str, Title: str):
+    response = await update_contact(name, photo, mobile, email, Company, Title)
     if response:
         return response
 
